@@ -504,7 +504,7 @@ Each response includes:
 
 ### Live Demo
 
-🔗 **[Access the Live Chatbot Here](#)** *(Deploy link will be added after deployment)*
+🔗 **[Access the Live Chatbot Here](#)** *(https://rag-chatbot-health-tourism.streamlit.app/)*
 
 ### Features
 
@@ -633,28 +633,6 @@ Each response includes:
 
 ---
 
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-```
-MIT License
-
-Copyright (c) 2024 [Your Name]
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-```
 
 ---
 
@@ -662,10 +640,8 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
 ### Get Help
 
-- **Issues:** [GitHub Issues](https://github.com/your-username/rag-chatbot-health-tourism/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/your-username/rag-chatbot-health-tourism/discussions)
-- **Email:** your.email@example.com
-
+- **Issues:** (https://github.com/taylantaskin/rag-chatbot-health-tourism/issues)
+- **Email: Taylantaskin@yahoo.com
 ### Contributing
 
 We welcome contributions! Please:
