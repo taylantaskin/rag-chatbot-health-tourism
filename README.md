@@ -529,13 +529,13 @@ Each response includes:
 ### Screenshots
 
 #### Main Interface
-![Main Chat Interface](screenshots/main-interface.png)
+![Main Chat Interface](screenshots/main_interface.png)
 
 #### Example Conversation
-![Sample Q&A](screenshots/sample-conversation.png)
+![Example Conversation](screenshots/example_conversation.png)
 
 #### Source Citations
-![Source Display](screenshots/source-citations.png)
+![Source Citations](screenshots/source_citations.png)
 
 ### Deployment Information
 
