@@ -9,7 +9,7 @@
 
 **An AI-powered chatbot providing comprehensive information about health tourism in Turkey using RAG (Retrieval Augmented Generation) technology.**
 
-[Live Demo](#) | [Documentation](#) | [Report Issue](https://github.com/your-username/rag-chatbot-health-tourism/issues)
+[Live Demo](https://rag-chatbot-health-tourism.streamlit.app/) |  | [Report Issue](https://github.com/taylantaskin/rag-chatbot-health-tourism/issues)
 
 </div>
 
