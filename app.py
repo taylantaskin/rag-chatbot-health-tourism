@@ -1,11 +1,14 @@
 import streamlit as st
 import sys
 import os
+import time  # NEWLY ADDED
 
 # Add src to path
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from rag_chatbot import RAGChatbot
+# Import relevant functions from vector_store.py
+from vector_store import build_vector_database  # NEWLY ADDED
 
 # Page configuration
 st.set_page_config(
@@ -14,7 +17,7 @@ st.set_page_config(
     layout="wide"
 )
 
-# Custom CSS
+# --- (Custom CSS - No changes) ---
 st.markdown("""
     <style>
     .main-header {
@@ -38,19 +41,44 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# --- NEWLY ADDED: Database path ---
+DB_DIRECTORY = "chroma_db"
 
-# Initialize chatbot
+
+# --- UPDATED: Chatbot loading function ---
 @st.cache_resource
 def load_chatbot():
-    """Load and cache the chatbot"""
-    return RAGChatbot()
+    """
+    Loads and caches the chatbot.
+    If 'chroma_db' directory doesn't exist, it builds the database.
+    """
+
+    # Step 1: Check if the database exists and build if necessary
+    if not os.path.exists(DB_DIRECTORY):
+        st.info("First run: Building vector database... (This may take 1-2 minutes)")
+        print("Streamlit Cloud: 'chroma_db' not found, calling build_vector_database()")
+
+        start_time = time.time()
+
+        # Call the function imported from vector_store.py
+        build_vector_database()
+
+        end_time = time.time()
+        st.success(f"Database built successfully! ({end_time - start_time:.2f} seconds)")
+        print(f"Streamlit Cloud: Database built. ({end_time - start_time:.2f} seconds)")
+    else:
+        print("Streamlit Cloud: Found and loaded existing 'chroma_db' database.")
+
+    # Step 2: Load the chatbot after ensuring the database is ready
+    chatbot = RAGChatbot()
+    return chatbot
 
 
 # Header
 st.markdown('<div class="main-header">🏥 Turkish Health Tourism Assistant</div>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Ask me anything about health tourism in Turkey!</div>', unsafe_allow_html=True)
 
-# Sidebar
+# --- (Sidebar - No changes) ---
 with st.sidebar:
     st.header("ℹ️ About")
     st.write("""
@@ -80,12 +108,13 @@ with st.sidebar:
     - Sentence Transformers
     """)
 
-# Main chat interface
+# --- (Main chat interface - No changes) ---
 try:
+    # This function now also checks/builds the database
     chatbot = load_chatbot()
-    st.success("✅ Chatbot loaded successfully!")
+    st.success("✅ Chatbot is ready!")  # Updated message
 except Exception as e:
-    st.error(f"❌ Error loading chatbot: {e}")
+    st.error(f"❌ Critical error loading chatbot: {e}")
     st.stop()
 
 # Initialize chat history
@@ -132,7 +161,7 @@ if prompt := st.chat_input("Ask your question here..."):
             except Exception as e:
                 st.error(f"Error generating answer: {e}")
 
-# Footer
+# --- (Footer - No changes) ---
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #888;'>
