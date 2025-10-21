@@ -22,7 +22,19 @@ class RAGChatbot:
             raise ValueError("GEMINI_API_KEY not found in environment variables")
 
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('models/gemini-2.5-flash')
+
+        # Configure generation settings
+        generation_config = {
+            "temperature": 0.7,
+            "top_p": 0.95,
+            "top_k": 40,
+            "max_output_tokens": 300,  # Limit output length
+        }
+
+        self.model = genai.GenerativeModel(
+            'models/gemini-2.0-flash',
+            generation_config=generation_config
+        )
 
         print("✓ Gemini model initialized")
 
@@ -46,21 +58,22 @@ class RAGChatbot:
                                for i, doc in enumerate(context_docs)])
 
         prompt = f"""You are an expert assistant on Turkish Health Tourism. 
-Use the following context documents to answer the user's question accurately and comprehensively.
+    Use the following context documents to answer the user's question accurately and concisely.
 
-Context Documents:
-{context}
+    Context Documents:
+    {context}
 
-User Question: {query}
+    User Question: {query}
 
-Instructions:
-- Provide a detailed and helpful answer based on the context documents
-- If the context doesn't contain enough information, say so honestly
-- Focus on Turkish health tourism specifically
-- Be professional and informative
-- Use clear and concise language
+    Instructions:
+    - Provide a concise answer (maximum 150 words)
+    - Use bullet points for lists when appropriate
+    - Focus on the most important information
+    - If the context doesn't contain enough information, say so briefly
+    - Be professional and helpful
+    - Cite the document sources at the end
 
-Answer:"""
+    Answer:"""
 
         return prompt
 
